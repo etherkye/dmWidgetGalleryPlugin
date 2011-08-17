@@ -10,6 +10,7 @@ class dmWidgetContentGalleryForm extends dmWidgetPluginForm
   ),
   $animations = array(
     'slideshow' => 'Slideshow',
+    'simplyScroll' => 'Simply Scroll',
     'custom'    => 'Custom'
   );
 

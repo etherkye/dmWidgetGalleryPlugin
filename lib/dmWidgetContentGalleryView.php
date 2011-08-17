@@ -9,7 +9,7 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView
     
     $this->addRequiredVar(array('medias', 'method', 'animation'));
 
-    $this->addJavascript(array('dmWidgetGalleryPlugin.view', 'dmWidgetGalleryPlugin.cycle'));
+    //$this->addJavascript(array('dmWidgetGalleryPlugin.view', 'dmWidgetGalleryPlugin.cycle'));
   }
 
   protected function filterViewVars(array $vars = array())
@@ -25,7 +25,7 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView
     
     // fetch media records
     $mediaRecords = empty($mediaIds) ? array() : $this->getMediaQuery($mediaIds)->fetchRecords()->getData();
-    
+
     // sort records
     $this->mediaPositions = array_flip($mediaIds);
     usort($mediaRecords, array($this, 'sortRecordsCallback'));
@@ -35,29 +35,31 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView
     foreach($mediaRecords as $index => $mediaRecord)
     {
       $mediaTag = $this->getHelper()->media($mediaRecord);
-  
+
       if (!empty($vars['width']) || !empty($vars['height']))
       {
         $mediaTag->size(dmArray::get($vars, 'width'), dmArray::get($vars, 'height'));
       }
-  
-      $mediaTag->method($vars['method']);
-  
+
+      if(!$mediaTag instanceof dmMediaTagFlowPlayerApplication){
+        $mediaTag->method($vars['method']);
+      }
+
       if ($vars['method'] === 'fit')
       {
         $mediaTag->background($vars['background']);
       }
-      
+
       if ($alt = $vars['medias'][$index]['alt'])
       {
         $mediaTag->alt($this->__($alt));
       }
-      
+
       if ($quality = dmArray::get($vars, 'quality'))
       {
         $mediaTag->quality($quality);
       }
-      
+
       $medias[] = array(
         'tag'   => $mediaTag,
         'link'  => $vars['medias'][$index]['link']
@@ -79,6 +81,7 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView
   {
     return dmDb::query('DmMedia m')
     ->leftJoin('m.Folder f')
+    ->leftJoin('m.Translation t WITH t.lang = ?',array('en'))
     ->whereIn('m.id', $mediaIds);
   }
 
@@ -94,7 +97,7 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView
     
     $html = $helper->open('ol.dm_widget_content_gallery.list', array('json' => array(
       'animation' => $vars['animation'],
-      'delay'     => dmArray::get($vars, 'delay', 3)
+      'delay'     => dmArray::get($vars, 'delay', 2)
     )));
     
     foreach($vars['medias'] as $media)
