@@ -1,0 +1,58 @@
+/* Gallery Images*/
+.simply-scroll-container {
+    position: relative;
+}
+.simply-scroll-clip {
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+.simply-scroll-list {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: table;
+}
+.simply-scroll-list li {
+    z-index:10;
+    display: table-cell;
+}
+.simply-scroll-list a{
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+.simply-scroll-list img {
+    border: none;
+    display: block;
+}
+
+.simply-scroll {
+    width: 745px;
+    height: 250px;
+}
+.simply-scroll .simply-scroll-clip {
+    width: 745px;
+    height: 250px;
+}
+.simply-scroll li {
+    float: left;
+    height: 250px;
+    margin-left: 20px;
+}
+
+/* galleries */
+.content_gallery ol{
+    padding: 0;
+}
+.content_gallery li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
