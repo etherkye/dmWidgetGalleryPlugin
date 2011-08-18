@@ -2,3 +2,4 @@ dmWidgetContent:
 
   gallery:
     cache:              true
+    sprite:             true    #default FALSE

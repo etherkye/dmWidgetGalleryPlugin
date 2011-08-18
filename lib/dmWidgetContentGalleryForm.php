@@ -83,6 +83,11 @@ class dmWidgetContentGalleryForm extends dmWidgetPluginForm
       'min' => 0,
       'max' => 100
     ));
+
+    $this->widgetSchema['sprite'] = new sfWidgetFormInputCheckbox(array());
+    $this->validatorSchema['sprite'] = new sfValidatorPass(array(
+      'required' => false
+    ));
   
     if (!$this->getDefault('medias'))
     {
