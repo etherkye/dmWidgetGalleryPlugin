@@ -122,6 +122,7 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
     return implode(', ', $alts);
   }
 
+  //Thank you diceattack.wordpress.com
   protected function createSprite($medias, $height, $width, $sprite, $recreate = false) {
 
     $helper = $this->getHelper();
