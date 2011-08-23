@@ -5,6 +5,7 @@ js:
     view:      view
     form:      form
     cycle:     cycle/jquery.cycle.lite-1.0.min
+    scroll:    scroll/jquery.simplyscroll-1.0.4.min
 
 css:
 

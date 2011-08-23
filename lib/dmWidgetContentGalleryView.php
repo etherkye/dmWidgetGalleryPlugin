@@ -7,7 +7,7 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
 
     $this->addRequiredVar(array('medias', 'method', 'animation'));
 
-    //$this->addJavascript(array('dmWidgetGalleryPlugin.view', 'dmWidgetGalleryPlugin.cycle'));
+    $this->addJavascript(array('dmWidgetGalleryPlugin.view', 'dmWidgetGalleryPlugin.cycle', 'dmWidgetGalleryPlugin.scroll'));
   }
 
   protected function filterViewVars(array $vars = array()) {

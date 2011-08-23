@@ -24,8 +24,8 @@ $.fn.simplyScroll = function(o) {
 
 var defaults = {
 	className: 'simply-scroll',
-	frameRate: 96, //No of movements per second
-	speed: 1, //No of pixels per frame
+	frameRate: 28, //No of movements per second
+	speed: 5, //No of pixels per frame 
 	horizontal: true,
 	autoMode: 'off', //disables buttons 'loop','bounce'
 	pauseOnHover: true,
@@ -109,8 +109,12 @@ $.simplyScroll.fn.extend({
 			this.moveBackClass = 'simply-scroll-btn-up';
 			this.moveForwardClass = 'simply-scroll-btn-down';
 		} else {
-			this.itemMax = this.$items[0].offsetWidth ;
-			this.clipMax = this.$clip.width();			
+			this.itemMax = 0;
+                        for(var i =0 ; i < this.$items.length; i++){
+                            this.itemMax += this.$items[i].offsetWidth;
+                        }
+                        this.itemMax = Math.round(this.itemMax/this.$items.length/this.o.speed)*this.o.speed;
+			this.clipMax = this.$clip.width();
 			this.dimension = 'width';
 			this.moveBackClass = 'simply-scroll-btn-left';
 			this.moveForwardClass = 'simply-scroll-btn-right';

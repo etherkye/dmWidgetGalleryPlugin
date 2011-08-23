@@ -1,5 +1,5 @@
 (function($) {
-  
+
   $('#dm_page div.dm_widget.content_gallery').live('dmWidgetLaunch', function()
   {
     var $gallery = $(this).find('ol.dm_widget_content_gallery');
@@ -19,6 +19,15 @@
       $gallery.cycle({
         timeout:     options.delay * 1000,                      // convert to ms
         height:      $gallery.find('img:first').attr('height')  // use first image height
+      });
+    }
+    else if (options.animation == 'simplyScroll')
+    {
+      // launch jQuery smoothDivScroll
+      $gallery.simplyScroll({
+          pauseOnHover: false,
+          autoMode: 'loop',
+          speed: options.delay
       });
     }
     else if(options.animation == 'custom')
