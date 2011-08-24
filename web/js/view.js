@@ -29,6 +29,15 @@
           autoMode: 'loop',
           speed: options.delay
       });
+
+      $simplyscroll = $(this).find('.simply-scroll');
+      $simplyscroll.width(options.width);
+      $simplyscroll.height(options.height);
+
+      $simplyscrollclip = $(this).find('.simply-scroll .simply-scroll-clip');
+      $simplyscrollclip.width(options.width);
+      $simplyscrollclip.height(options.height);
+
     }
     else if(options.animation == 'custom')
     {

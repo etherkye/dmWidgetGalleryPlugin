@@ -7,6 +7,8 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
 
     $this->addRequiredVar(array('medias', 'method', 'animation'));
 
+    $this->addStylesheet(array('dmWidgetGalleryPlugin.view'));
+
     $this->addJavascript(array('dmWidgetGalleryPlugin.view', 'dmWidgetGalleryPlugin.cycle', 'dmWidgetGalleryPlugin.scroll'));
   }
 
@@ -86,7 +88,9 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
 
     $html = $helper->open('ol.dm_widget_content_gallery.list', array('json' => array(
                     'animation' => $vars['animation'],
-                    'delay' => dmArray::get($vars, 'delay', 2)
+                    'delay' => dmArray::get($vars, 'delay', 2),
+                    'width' => $vars['width'],
+                    'height' => $vars['height']
                     )));
 
     if (isset($vars['sprite']) && $vars['sprite']) {
