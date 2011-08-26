@@ -88,6 +88,11 @@ class dmWidgetContentGalleryForm extends dmWidgetPluginForm
     $this->validatorSchema['sprite'] = new sfValidatorPass(array(
       'required' => false
     ));
+
+    $this->widgetSchema['captions'] = new sfWidgetFormInputCheckbox(array());
+    $this->validatorSchema['captions'] = new sfValidatorPass(array(
+      'required' => false
+    ));
   
     if (!$this->getDefault('medias'))
     {

@@ -52,13 +52,15 @@ _tag('div#'.$baseTabId.'_effects',
     ).
     _tag('li.dm_form_element.delay.clearfix',
       $form['delay']->label(__('Delay'))->field()->error().
-      _tag('p.dm_help', __('Delay in seconds between transitions')).
-      _tag('p.dm_help', __('Leave empty to disable transitions'))
+      _tag('p.dm_help', __('Delay/Speed in seconds between transitions'))
     ).
     _tag('li.dm_form_element.sprite.clearfix',
       $form['sprite']->label(__('Sprite'))->field()->error().
-      _tag('p.dm_help', __('Do you want to sprite your images?')).
-      _tag('p.dm_help', __('Longest PHP/shorter load'))
+      _tag('p.dm_help', __('Sprites group all images into one to reduce HTTP requests'))
+    ).
+    _tag('li.dm_form_element.sprite.clearfix',
+      $form['captions']->label(__('Captions'))->field()->error().
+      _tag('p.dm_help', __('Turns your ALT text into captions'))
     )
   )
 ),

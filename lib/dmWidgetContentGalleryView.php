@@ -97,13 +97,18 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
     if (isset($vars['sprite']) && $vars['sprite']) {
       $id = '/sprites/' . md5($vars['ids']) . '.jpeg';
       if (is_file(sfConfig::get('sf_upload_dir') . $id) && (mt_rand(0, 1000) > 5)) {
-        $html .= $this->createSprite($vars['medias'], $vars['height'], $vars['width'], $id);
+        $html .= $this->createSprite($vars, $id);
       } else {
-        $html .= $this->createSprite($vars['medias'], $vars['height'], $vars['width'], $id, true);
+        $html .= $this->createSprite($vars, $id, true);
       }
     } else {
       foreach ($vars['medias'] as $media) {
-        $html .= $media['link'] ? $helper->link($media['link'])->text($media['tag']) : $media['tag'];
+       $caption = ($vars['captions'] && $media['tag']->hasOption('alt')) ? $helper->tag("div.caption",$media['tag']->getOption('alt','')) : "";
+       $html .= $helper->tag('div.element',
+                    ($media['link'] ?
+                        $helper->link($media['link'])->text($media['tag'] . $caption):
+                        $media['tag'] . $caption)
+                );
       }
     }
 
@@ -128,7 +133,10 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
   }
 
   //Thank you diceattack.wordpress.com
-  protected function createSprite($medias, $height, $width, $sprite, $recreate = false) {
+  protected function createSprite($vars, $sprite, $recreate = false) {
+    $medias = $vars['medias'];
+    $height = $vars['height'];
+    $width = $vars['width'];
 
     $helper = $this->getHelper();
     $html = "";
@@ -149,11 +157,17 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
         imagecopy($image, $tileImg, $x, 0, 0, 0, $media['tag']->getWidth(), $media['tag']->getHeight());
         imagedestroy($tileImg);
       }
-      $html .= $helper->tag('div.element', array("style" => "height:" . $height . "px; " .
-                  "width:" . $media['tag']->getWidth() . "px; " .
-                  "background: url('/uploads" . $sprite . "') no-repeat -" . $x . "px top;"
-                      ), $media['link'] ? $helper->link($media['link'])->text("") : ""
-      );
+
+        $caption = ($vars['captions'] && $media['tag']->hasOption('alt')) ? $helper->tag("div.caption",$media['tag']->getOption('alt','')) : "";
+               $html .= $helper->tag('div.element',
+                       array("style" => "height:" . $height . "px; " .
+                          "width:" . $media['tag']->getWidth() . "px; " .
+                          "background: url('/uploads" . $sprite . "') no-repeat -" . $x . "px top;"
+                        ),
+                        $media['link'] ?
+                          $helper->link($media['link'])->text($caption) :
+                          $caption
+                );
       $x+=$media['tag']->getWidth();
     }
 

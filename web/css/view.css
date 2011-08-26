@@ -1,52 +1,68 @@
 /* galleries */
 .content_gallery ol{
-    padding: 0;
+  padding: 0;
 }
 .content_gallery .element{
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 /* Scroll*/
 .simply-scroll-container {
-    position: relative;
+  position: relative;
 }
 .simply-scroll-clip {
-    position: relative;
-    overflow: hidden;
-    z-index: 2;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
 }
 .simply-scroll-list {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1;
-    overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
 
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 .simply-scroll-list li a{
-    display: block;
-    padding: 0;
-    margin: 0;
+  display: block;
+  padding: 0;
+  margin: 0;
 }
 
-.simply-scroll-list .element, .simply-scroll-list a, .simply-scroll-list img, .simply-scroll-list div {
-    z-index:10;
-    float: left;
-    margin-right: 20px;
+.simply-scroll-list .element {
+  z-index:10;
+  float: left;
+  margin-right: 20px;
+  position: relative;
 }
 
 .simply-scroll-list a {
-     display: block;
-     width: 100%;
-     height: 100%;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .simply-scroll-list img {
-    border: none;
-    display: block;
+  border: none;
+  display: block;
+}
+
+.simply-scroll-list .caption{
+  bottom: 0;
+  left: 0;
+  padding: 5px 0;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  color: white;
+  background-color: #003399;
+  opacity : 0.8;
+  margin-right: 20px;
+  font-size: 16px;
 }
