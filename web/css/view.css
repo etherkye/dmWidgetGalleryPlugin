@@ -2,7 +2,7 @@
 .content_gallery ol{
     padding: 0;
 }
-.content_gallery li{
+.content_gallery .element{
     list-style: none;
     padding: 0;
     margin: 0;
@@ -27,19 +27,26 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    display: table;
 }
-.simply-scroll-list li {
-    z-index:10;
-    display: table-cell;
-    padding-left: 20px;
-}
-.simply-scroll-list a{
+.simply-scroll-list li a{
     display: block;
     padding: 0;
     margin: 0;
 }
+
+.simply-scroll-list .element, .simply-scroll-list a, .simply-scroll-list img, .simply-scroll-list div {
+    z-index:10;
+    float: left;
+    margin-right: 20px;
+}
+
+.simply-scroll-list a {
+     display: block;
+     width: 100%;
+     height: 100%;
+}
+
 .simply-scroll-list img {
     border: none;
     display: block;
-} 
+}

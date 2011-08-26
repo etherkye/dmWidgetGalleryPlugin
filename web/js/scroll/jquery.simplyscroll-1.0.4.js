@@ -23,11 +23,11 @@ $.fn.simplyScroll = function(o) {
 };
 
 var defaults = {
-	className: 'simply-scroll',
-	frameRate: 28, //No of movements per second
+	className: 'simply-scroll', 
+	frameRate: 24, //No of movements per second
 	speed: 5, //No of pixels per frame 
 	horizontal: true,
-	autoMode: 'off', //disables buttons 'loop','bounce'
+	autoMode: 'loop', //disables buttons 'loop','bounce'
 	pauseOnHover: true,
 	startOnLoad: false, //use this if having rendering problems (safari 3 + Mac OSX?)
 	localJsonSource: '', //format [{"src":"images/pic.jpg","title":"title","link":"http://"},{etc..}]

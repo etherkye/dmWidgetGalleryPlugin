@@ -2,13 +2,13 @@
 
   $('#dm_page div.dm_widget.content_gallery').live('dmWidgetLaunch', function()
   {
-    var $gallery = $(this).find('ol.dm_widget_content_gallery');
+    var $gallery = $(this).find('div.dm_widget_content_gallery');
 
     // only if elements in gallery
-    if(!$gallery.find('>li').length)
-    {
-      return;
-    }
+//    if(!$gallery.find('>li').length)
+//    {
+//      return;
+//    }
 
     // get options from gallery metadata
     var options = $gallery.metadata();

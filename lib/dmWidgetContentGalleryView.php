@@ -86,7 +86,8 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
     $vars = $this->getViewVars();
     $helper = $this->getHelper();
 
-    $html = $helper->open('ol.dm_widget_content_gallery.list', array('json' => array(
+    $html = $helper->open('div.dm_widget_content_gallery_container');
+    $html = $helper->open('div.dm_widget_content_gallery.list', array('json' => array(
                     'animation' => $vars['animation'],
                     'delay' => dmArray::get($vars, 'delay', 2),
                     'width' => $vars['width'],
@@ -95,18 +96,18 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
 
     if (isset($vars['sprite']) && $vars['sprite']) {
       $id = '/sprites/' . md5($vars['ids']) . '.jpeg';
-      if (is_file(sfConfig::get('sf_upload_dir') . $id) && (mt_rand(0,1000) > 5)) {
+      if (is_file(sfConfig::get('sf_upload_dir') . $id) && (mt_rand(0, 1000) > 5)) {
         $html .= $this->createSprite($vars['medias'], $vars['height'], $vars['width'], $id);
       } else {
         $html .= $this->createSprite($vars['medias'], $vars['height'], $vars['width'], $id, true);
       }
     } else {
       foreach ($vars['medias'] as $media) {
-        $html .= $helper->tag('li.element', $media['link'] ? $helper->link($media['link'])->text($media['tag']) : $media['tag']);
+        $html .= $media['link'] ? $helper->link($media['link'])->text($media['tag']) : $media['tag'];
       }
     }
 
-    $html .= '</ol>';
+    $html .= '</div></div>';
 
     if ($this->isCachable()) {
       $this->setCache($html);
@@ -148,14 +149,10 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
         imagecopy($image, $tileImg, $x, 0, 0, 0, $media['tag']->getWidth(), $media['tag']->getHeight());
         imagedestroy($tileImg);
       }
-
-      $html .= $helper->tag('li.element',
-                      array("style" => "height:" . $height . "px; " .
-                          "width:" . $media['tag']->getWidth() . "px; " .
-                          "background: url('/uploads" . $sprite . "') no-repeat -" . $x . "px top;"
-                      ),
-                      ($media['link'] ? $helper->link($media['link'])->text("")->style("height:" . $height . "px; " .
-                                      "width:" . $media['tag']->getWidth() . "px;") : "")
+      $html .= $helper->tag('div.element', array("style" => "height:" . $height . "px; " .
+                  "width:" . $media['tag']->getWidth() . "px; " .
+                  "background: url('/uploads" . $sprite . "') no-repeat -" . $x . "px top;"
+                      ), $media['link'] ? $helper->link($media['link'])->text("") : ""
       );
       $x+=$media['tag']->getWidth();
     }
@@ -172,4 +169,5 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
     }
     return $html;
   }
+
 }

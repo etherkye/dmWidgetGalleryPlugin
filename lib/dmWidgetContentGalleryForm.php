@@ -219,11 +219,11 @@ class dmWidgetContentGalleryForm extends dmWidgetPluginForm
         $values['width'] = 300;
       }
       
-      $values['height'] = dmArray::get($values, 'height', (int) ($values['width'] * 2/3));
+      $values['height'] = dmArray::get($values, 'height', (int) ($values['width'] * 1/3));
     }
     elseif (empty($values['height']))
     {
-      $values['height'] = (int) ($values['width'] * 2/3);
+      $values['height'] = (int) ($values['width'] * 1/3);
     }
     
     unset($values['widget_width'], $values['media_position'], $values['media_id'], $values['media_link']);
