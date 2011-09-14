@@ -86,7 +86,6 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
     $vars = $this->getViewVars();
     $helper = $this->getHelper();
 
-    $html = $helper->open('div.dm_widget_content_gallery_container');
     $html = $helper->open('div.dm_widget_content_gallery.list', array('json' => array(
                     'animation' => $vars['animation'],
                     'delay' => dmArray::get($vars, 'delay', 2),
@@ -112,7 +111,7 @@ class dmWidgetContentGalleryView extends dmWidgetPluginView {
       }
     }
 
-    $html .= '</div></div>';
+    $html .= '</div>';
 
     if ($this->isCachable()) {
       $this->setCache($html);
